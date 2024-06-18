@@ -22,7 +22,7 @@
 
 # Dependencies
 /node_modules
-/package-lock.json
+package-lock.json
 
 # Tests
 /.tsimp
