@@ -1,6 +1,6 @@
 {
   "name": "@gitlab-formatters/stylelint-formatter-gitlab",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Formatter that transforms Stylelint reports into a format suitable for use with GitLab widgets.",
   "keywords": [
     "stylelint",

@@ -1,3 +1,13 @@
+## [1.0.2](https://gitlab.com/gitlab-formatters/stylelint-formatter-gitlab/compare/v1.0.1...v1.0.2) (2024-06-18)
+
+### Bug Fixes
+
+* change peerDependencies to stylelint >=14 ([7eedc0b](https://gitlab.com/gitlab-formatters/stylelint-formatter-gitlab/commit/7eedc0b9d6a579d46b9a947483b1791785ca077f))
+
+### Tests
+
+* add matrix tests with different stylelint versions ([48ebee3](https://gitlab.com/gitlab-formatters/stylelint-formatter-gitlab/commit/48ebee3e8e97912e536916a745c3df3493e4d876))
+
 ## [1.0.1](https://gitlab.com/gitlab-formatters/stylelint-formatter-gitlab/compare/v1.0.0...v1.0.1) (2024-06-18)
 
 ### Others
