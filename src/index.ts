@@ -7,7 +7,7 @@ const gitlabCodeQualityFormatter = (results: LintResult[], returnValue: LinterRe
     const issues: Issue[] = results.flatMap((result) =>
         result.warnings.map((message) => ({
             type: 'issue',
-            check_name: message.rule ?? 'unknown_rule',
+            check_name: message.rule,
             description: message.text,
             content: {
                 body: `Error found in ${message.rule}.${
@@ -36,7 +36,7 @@ const gitlabCodeQualityFormatter = (results: LintResult[], returnValue: LinterRe
             },
             severity: determineSeverity(message.severity),
             fingerprint: generateFingerprint(
-                [result?.source, message.rule, message.text, `${message.line}`, `${message.column}`],
+                [result.source, message.rule, message.text, `${message.line}`, `${message.column}`],
                 hashes,
             ),
         })),
