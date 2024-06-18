@@ -52,6 +52,7 @@
     "@semantic-release/gitlab": "13.1.0",
     "@semantic-release/npm": "12.0.1",
     "@semantic-release/release-notes-generator": "14.0.0",
+    "@stylistic/eslint-plugin": "2.2.1",
     "@types/node": "20.14.1",
     "@typescript-eslint/eslint-plugin": "7.13.0",
     "@typescript-eslint/parser": "7.13.0",

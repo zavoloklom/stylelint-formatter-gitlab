@@ -1,4 +1,4 @@
-import { LinterResult, LintResult } from 'stylelint';
+import type { LinterResult, LintResult } from 'stylelint';
 import type { Issue } from './types.d.ts';
 import { getRelativePath, generateFingerprint, determineSeverity, getRuleUrl } from './functions.js';
 
