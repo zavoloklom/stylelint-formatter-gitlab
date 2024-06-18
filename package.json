@@ -82,7 +82,7 @@
     "typescript-json-schema": "0.63.0"
   },
   "peerDependencies": {
-    "stylelint": ">=16"
+    "stylelint": ">=14"
   },
   "publishConfig": {
     "access": "public",

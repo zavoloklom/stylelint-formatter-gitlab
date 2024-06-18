@@ -18,3 +18,49 @@ tests__unit:
         path: coverage/cobertura-coverage.xml
       junit: coverage/junit.xml
   coverage: '/Statements.*?\s+(\d+.\d+)/'
+
+tests__functional:
+  stage: tests
+  image: ${NODE_IMAGE}
+  interruptible: true
+  needs:
+    - job: build
+      artifacts: true
+  before_script:
+    - apk update && apk add jq
+  script:
+    - echo "Running tests with stylelint version ${STYLELINT_VERSION}"
+    - |
+      VERSIONS=$(npm show stylelint-config-standard versions --json | jq -r '.[]' | awk '{lines[NR] = $0} END {for (i = NR; i > 0; i--) print lines[i]}')
+      echo "Available versions of stylelint-config-standard (reversed): $VERSIONS"
+      COMPATIBLE_VERSION=""
+      for version in $VERSIONS; do
+        echo "Checking version $version"
+        PEER_DEP=$(npm show stylelint-config-standard@$version peerDependencies 2>/dev/null)
+        if [ $? -ne 0 ] || [ -z "$PEER_DEP" ]; then
+          echo "No peerDependencies for version $version or failed to get peerDependencies"
+          continue
+        fi
+        echo "Peer dependencies for $version: $PEER_DEP"
+        if echo "$PEER_DEP" | grep -q "stylelint: .*${STYLELINT_VERSION}\.[0-9]*\.[0-9]*"; then
+          COMPATIBLE_VERSION=$version
+          echo "Compatible version found: $COMPATIBLE_VERSION"
+          break
+        fi
+      done
+      if [ -z "$COMPATIBLE_VERSION" ]; then
+        echo "No compatible version of stylelint-config-standard found for stylelint@${STYLELINT_VERSION}"
+        exit 1
+      fi
+    - npm install stylelint@${STYLELINT_VERSION} stylelint-config-standard@${COMPATIBLE_VERSION}
+    - npx stylelint ./tests_functional/style.css --config tests_functional/.stylelintrc --custom-formatter=dist/bundle.cjs --output-file=gl-codequality.json || true
+    - |
+      if cat gl-codequality.json | grep -q "bf8dfc8324c9b7c24d13d4d1c80d9f52"; then
+        echo "Fingerprint value found, tests passed.";
+      else
+        echo "Fingerprint value not found, tests failed.";
+        exit 1;
+      fi
+  parallel:
+    matrix:
+      - STYLELINT_VERSION: [ "14", "15", "16" ]
