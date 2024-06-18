@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { relative } from 'node:path';
-import { LinterResult, Severity as StylelintSeverity } from 'stylelint';
+import type { LinterResult, Severity as StylelintSeverity } from 'stylelint';
 import type { Severity } from './types.d.ts';
 
 export const getRelativePath = (path: string | undefined, context: LinterResult): string => {
@@ -8,7 +8,12 @@ export const getRelativePath = (path: string | undefined, context: LinterResult)
 };
 
 export const getRuleUrl = (rule: string | undefined, linterResult: LinterResult): string | undefined => {
-    return rule ? linterResult.ruleMetadata[rule]?.url : undefined;
+    if (!rule || !linterResult.ruleMetadata) {
+        return undefined;
+    }
+
+    const metadata = linterResult.ruleMetadata[rule];
+    return metadata ? metadata.url : undefined;
 };
 
 export const generateFingerprint = (data: (string | undefined)[], hashes: Set<string>): string => {

@@ -58,6 +58,22 @@ const mockResults: LintResult[] = [
         warnings: [],
         ignored: true,
     },
+    {
+        source: '/path/to/another-file.css',
+        deprecations: [],
+        invalidOptionWarnings: [],
+        parseErrors: [],
+        errored: true,
+        warnings: [
+            {
+                line: 1,
+                column: 9,
+                rule: 'scss/no-global-function-names',
+                severity: 'warning',
+                text: 'Expected map.merge instead of map-merge (scss/no-global-function-names)',
+            },
+        ],
+    },
 ];
 
 const mockReturnValue: LinterResult = {
@@ -135,6 +151,34 @@ const expectedReport: Issue[] = [
         },
         severity: 'major',
         fingerprint: 'd9752f8a0a21a5d6c96d947cb21bd0ed',
+    },
+    {
+        type: 'issue',
+        check_name: 'scss/no-global-function-names',
+        description: 'Expected map.merge instead of map-merge (scss/no-global-function-names)',
+        content: {
+            body: 'Error found in scss/no-global-function-names.',
+        },
+        categories: ['Style'],
+        location: {
+            path: 'another-file.css',
+            lines: {
+                begin: 1,
+                end: 1,
+            },
+            positions: {
+                begin: {
+                    line: 1,
+                    column: 9,
+                },
+                end: {
+                    line: 1,
+                    column: 9,
+                },
+            },
+        },
+        severity: 'minor',
+        fingerprint: 'e415b1dceb3f3acc23b9639c8d0dcd6d',
     },
 ];
 
