@@ -1,6 +1,6 @@
 # Stylelint Gitlab Codequality Formatter
 
-[![Latest Release](https://img.shields.io/npm/v/%40gitlab-formatters%stylelint-formatter-gitlab?style=flat-square)](https://www.npmjs.com/package/@gitlab-formatters/stylelint-formatter-gitlab)
+[![Latest Release](https://img.shields.io/npm/v/%40gitlab-formatters%2Fstylelint-formatter-gitlab?style=flat-square)](https://www.npmjs.com/package/@gitlab-formatters/stylelint-formatter-gitlab)
 ![Coverage Badge](https://img.shields.io/codacy/coverage/8420b859b4654c05a2ba9201620081c7?style=flat-square&label=Coverage)
 [![Codacy Code Quality Badge](https://img.shields.io/codacy/grade/8420b859b4654c05a2ba9201620081c7?style=flat-square&logo=codacy&label=Code%20Quality)](https://app.codacy.com/gl/gitlab-formatters/stylelint-formatter-gitlab/dashboard?utm_source=gl&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=whit&style=flat-square)](https://conventionalcommits.org)
