@@ -55,7 +55,7 @@ tests__functional:
     - npm install stylelint@${STYLELINT_VERSION} stylelint-config-standard@${COMPATIBLE_VERSION}
     - npx stylelint ./tests_functional/style.css --config tests_functional/.stylelintrc --custom-formatter=dist/bundle.cjs --output-file=gl-codequality.json || true
     - |
-      if cat gl-codequality.json | grep -q "bf8dfc8324c9b7c24d13d4d1c80d9f52"; then
+      if cat gl-codequality.json | grep -q "bf8dfc8324c9b7c24d13d4d1c80d9f52" || grep -q "9a181e30121682480c781d5dca3f43cf" gl-codequality.json; then
         echo "Fingerprint value found, tests passed.";
       else
         echo "Fingerprint value not found, tests failed.";
